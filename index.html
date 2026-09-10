@@ -347,7 +347,7 @@
   .site-preview{ width:100%; border:1px solid var(--rule); border-radius:6px; overflow:hidden; background:var(--white); }
   .site-preview-bar{ display:flex; align-items:center; gap:6px; padding:11px 14px; background:var(--linen); border-bottom:1px solid var(--rule); }
   .site-preview-bar .dot{ width:8px; height:8px; border-radius:50%; background:var(--rule); display:inline-block; }
-  .site-preview-url{ margin-left:8px; font-family:var(--sans); font-size:11px; letter-spacing:0.02em; opacity:0.55; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .site-preview-url{ margin-left:8px; font-family:var(--sans); font-size:11px; letter-spacing:0.02em; opacity:0.55; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; flex:1 1 auto; }
   .site-preview-viewport{ position:relative; width:100%; min-height:360px; overflow:hidden; background:var(--white); }
   .site-preview-viewport iframe{ position:absolute; top:0; left:0; border:0; transform-origin:0 0; background:var(--white); }
   .preview-cap{ font-size:15px; line-height:1.55; opacity:0.78; margin-top:16px; max-width:50ch; }
@@ -1256,7 +1256,6 @@
   (function(){
     var wrap = document.getElementById('sitePreviewViewport');
     var frame = document.getElementById('sitePreviewFrame');
-    var urlTag = document.getElementById('sitePreviewUrl');
     if(!wrap || !frame) return;
     var DESKTOP_W = 1440, DESKTOP_H = 900;
     var MOBILE_W = 390, MOBILE_H = 844;
@@ -1272,7 +1271,6 @@
       frame.style.height = vh + 'px';
       frame.style.transform = 'scale(' + scale + ')';
       wrap.style.height = Math.round(vh * scale) + 'px';
-      if(urlTag){ urlTag.textContent = 'watermark-constructions.mockups.studioloock.co' + (mobile ? ' (mobile preview)' : ' (desktop preview)'); }
     }
     window.addEventListener('resize', sync);
     window.addEventListener('orientationchange', sync);
